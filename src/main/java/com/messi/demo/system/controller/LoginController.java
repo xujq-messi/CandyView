@@ -25,11 +25,11 @@ public class LoginController {
     public String index(Model model) {
         logger.info("index invoke") ;
 
-        User user = new User() ;
-        user.setName("messi");
-        user.setPassword("messi@123");
-
-        model.addAttribute("user", user) ;
+//        User user = new User() ;
+//        user.setName("messi");
+//        user.setPassword("messi@123");
+//
+//        model.addAttribute("user", user) ;
         return "login" ;
     }
 

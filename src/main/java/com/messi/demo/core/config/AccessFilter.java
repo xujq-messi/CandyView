@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Enumeration;
 import java.util.Iterator;
 
@@ -18,7 +19,7 @@ public class AccessFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        logger.info("doFilter") ;
+        logger.info("doFilter -- across the Filter") ;
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest ;
 
         Enumeration<String> headers = httpServletRequest.getHeaderNames();
@@ -33,10 +34,10 @@ public class AccessFilter implements Filter {
         }
 
         // continue to access
-        //filterChain.doFilter(servletRequest, servletResponse);
+        filterChain.doFilter(servletRequest, servletResponse);
 
-        // redirect to error page
-        HttpServletResponse httpServletResponse = (HttpServletResponse) servletResponse ;
-        httpServletResponse.sendRedirect("localhost:8080/ferror");
+        // return error page
+        //PrintWriter writer = servletResponse.getWriter(); //
+        //writer.write("<html><h1>error error error</h1></html>");
     }
 }
